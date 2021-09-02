@@ -1,0 +1,12 @@
+.rightbar {
+  flex: 2;
+  height: 100vh;
+
+  padding: 20px;
+
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 68px;
+
+  overflow-y: scroll;
+}

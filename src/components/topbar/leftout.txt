@@ -1,0 +1,14 @@
+insert at line 92 above logout
+
+<Button variant="success" href="/action">
+          <Person style={{ fontSize: "4vh ", ...iconStyle }} />{" "}
+          <Badge style={{ backgroundColor: "red" }}>3</Badge>
+        </Button>
+        <Button variant="success" href="/action">
+          <Chat style={{ fontSize: "4vh ", ...iconStyle }} />
+          <Badge style={{ backgroundColor: "red" }}>2</Badge>
+        </Button>
+        <Button variant="success" href="/action">
+          <Notifications style={{ fontSize: "4vh ", ...iconStyle }} />
+          <Badge style={{ backgroundColor: "red" }}>1</Badge>
+        </Button>
