@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import randomBytes from "randombytes";
 
 import { storage } from "../../firebase";
 
 export default function Edit({ title, closeEdit, user }) {
+  const [showLoading, setShowLoading] = useState(false);
   const [profile, setProfile] = useState(null);
   const [cover, setCover] = useState(null);
   const desc = useRef();
@@ -14,6 +16,7 @@ export default function Edit({ title, closeEdit, user }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setShowLoading(true);
     let pURL, cURL;
     if (profile !== null) {
       pURL = await handleUpload(profile, "profile");
@@ -31,6 +34,7 @@ export default function Edit({ title, closeEdit, user }) {
       profilePicture: pURL,
       coverPicture: cURL,
     });
+    setShowLoading(false);
     closeEdit();
     window.location.reload();
   };
@@ -125,7 +129,11 @@ export default function Edit({ title, closeEdit, user }) {
 
       <Modal.Footer>
         <Button variant="primary" onClick={submitHandler}>
-          Save changes
+          {showLoading ? (
+            <CircularProgress color="secondary" size="15px" />
+          ) : (
+            "Save changes"
+          )}
         </Button>
       </Modal.Footer>
     </React.Fragment>

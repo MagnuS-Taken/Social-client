@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Button, Card, ListGroup, Nav } from "react-bootstrap";
 import { AddLocation, Label, Photo } from "@material-ui/icons";
+import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import randomBytes from "randombytes";
 
@@ -9,6 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function Share({ user }) {
   const [image, setImage] = useState(null);
+  const [showLoading, setShowLoading] = useState(false);
   const desc = useRef();
 
   const { sourcePath } = useAuth();
@@ -35,7 +37,9 @@ export default function Share({ user }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setShowLoading(true);
     if (desc.current.value === "") {
+      setShowLoading(false);
       return;
     }
 
@@ -52,6 +56,7 @@ export default function Share({ user }) {
 
     try {
       await axios.post("/post", newPost);
+      setShowLoading(false);
       window.location.reload();
     } catch (e) {
       console.log(e);
@@ -148,7 +153,11 @@ export default function Share({ user }) {
               }}
               onClick={submitHandler}
             >
-              Share
+              {showLoading ? (
+                <CircularProgress color="secondary" size="15px" />
+              ) : (
+                "Share"
+              )}
             </Button>
           </ListGroup.Item>
         </ListGroup>

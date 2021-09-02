@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Nav, Navbar, FormControl, Button, Form } from "react-bootstrap";
-import { Search, Forum, ExitToApp } from "@material-ui/icons";
+import { Search, Forum, PowerSettingsNew } from "@material-ui/icons";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -77,7 +77,7 @@ export default function Topbar() {
         </Navbar.Collapse>
 
         <Button variant="success" onClick={handleLogout}>
-          <ExitToApp style={{ fontSize: "4vh ", ...iconStyle }} />
+          <PowerSettingsNew style={{ fontSize: "4vh ", ...iconStyle }} />
         </Button>
         <Navbar.Brand href={`/profile/${user.username}`}>
           <img

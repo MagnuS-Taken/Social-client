@@ -44,7 +44,7 @@ export default function Post({ post, userId }) {
   const likeHandler = () => {
     try {
       axios.put(`post/${post._id}/like`, {
-        userId: user._id,
+        userId: userId,
       });
     } catch (e) {}
 
@@ -126,7 +126,9 @@ export default function Post({ post, userId }) {
             style={{ fontSize: "15px", fontWeight: "500" }}
           >
             <img
-              src={sourcePath + "like.png"}
+              src={
+                isLiked ? sourcePath + "dislike.png" : sourcePath + "like.png"
+              }
               style={{
                 width: "24px",
                 height: "24px",
